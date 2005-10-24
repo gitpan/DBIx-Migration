@@ -1,4 +1,7 @@
 Tis file documents the revision history for Perl extension DBIx::Migration.
 
-0.01  2005-10-24 23:00:00 2005
+0.02  2005-10-24 01:00:00 2005
+        - default to newest version
+
+0.01  2005-10-24 00:00:00 2005
         - first release

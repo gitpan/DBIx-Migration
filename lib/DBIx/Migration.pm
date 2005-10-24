@@ -6,7 +6,7 @@ use DBI;
 use File::Slurp;
 use File::Spec;
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 __PACKAGE__->mk_accessors(qw/debug dir dsn password username/);
 
@@ -74,6 +74,7 @@ Migrate database to version.
 sub migrate {
     my ( $self, $wanted ) = @_;
     $self->_connect;
+    $wanted = $self->_newest unless defined $wanted;
     my $version = $self->_version;
     if ( defined $version && ( $wanted eq $version ) ) {
         print "Database is already at version $wanted\n" if $self->debug;
@@ -195,6 +196,16 @@ sub _files {
     }
     return undef unless @$need == @files;
     return @files ? \@files : undef;
+}
+
+sub _newest {
+    my $self   = shift;
+    my $newest = 0;
+    for my $up ( glob( File::Spec->catfile( $self->dir, "*_up.sql" ) ) ) {
+        $up =~ /^.*(\d+)_up.sql$/;
+        $newest = $1 if $1 > $newest;
+    }
+    return $newest;
 }
 
 sub _update_migration_table {

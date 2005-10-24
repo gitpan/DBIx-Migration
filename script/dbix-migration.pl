@@ -32,7 +32,7 @@ unless ( $ARGV[1] ) {
     exit;
 }
 
-pod2usage(1) if ( !$ARGV[1] || !defined $ARGV[2] );
+pod2usage(1) if !$ARGV[1];
 
 my $m = DBIx::Migration->new(
     {
@@ -64,6 +64,7 @@ dbix-migration.pl [options] dsn [directory version]
 
   Examples:
     dbix-migration.pl dbi:SQLite:/some/dir/myapp.db
+    dbix-migration.pl dbi:SQLite:/some/dir/myapp.db/some/dir
     dbix-migration.pl dbi:SQLite:/some/dir/myapp.db/some/dir 23
 
 =head1 DESCRIPTION

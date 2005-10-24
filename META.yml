@@ -1,6 +1,6 @@
 ---
 name: DBIx-Migration
-version: 0.01
+version: 0.02
 author:
   - 'Sebastian Riedel, C<sri@oook.de>'
 abstract: 'Seamless DB schema up- and downgrades'
@@ -13,5 +13,5 @@ requires:
 provides:
   DBIx::Migration:
     file: lib/DBIx/Migration.pm
-    version: 0.01
+    version: 0.02
 generated_by: Module::Build version 0.2611
