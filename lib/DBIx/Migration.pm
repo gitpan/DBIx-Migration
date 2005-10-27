@@ -6,7 +6,7 @@ use DBI;
 use File::Slurp;
 use File::Spec;
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 __PACKAGE__->mk_accessors(qw/debug dir dsn password username/);
 
@@ -113,9 +113,9 @@ sub migrate {
                 if ( $self->{_dbh}->err ) {
                     die "Database error: " . $self->{_dbh}->errstr;
                 }
-                $ver -= 1 if ( ( $ver > 0 ) && ( $type eq 'down' ) );
-                $self->_update_migration_table($ver);
             }
+            $ver -= 1 if ( ( $ver > 0 ) && ( $type eq 'down' ) );
+            $self->_update_migration_table($ver);
         }
     }
     else {
