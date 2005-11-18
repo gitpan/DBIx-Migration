@@ -1,5 +1,9 @@
 Tis file documents the revision history for Perl extension DBIx::Migration.
 
+0.04  2005-11-18 00:00:00
+        - Fixed multi-digit revisions (David Christensen)
+        - Added sql comment support
+
 0.03  2005-10-26 00:00:00
         - Fixed the multiple sql statement bug
 

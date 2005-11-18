@@ -6,7 +6,7 @@ use DBI;
 use File::Slurp;
 use File::Spec;
 
-our $VERSION = '0.03';
+our $VERSION = '0.04';
 
 __PACKAGE__->mk_accessors(qw/debug dir dsn password username/);
 
@@ -106,6 +106,7 @@ sub migrate {
             print qq/Processing "$name"\n/ if $self->debug;
             next unless $file;
             my $text = read_file($name);
+            $text =~ s/\s*--.*$//g;
             for my $sql ( split /;/, $text ) {
                 next unless $sql =~ /\w/;
                 print "$sql\n" if $self->debug;
@@ -202,7 +203,7 @@ sub _newest {
     my $self   = shift;
     my $newest = 0;
     for my $up ( glob( File::Spec->catfile( $self->dir, "*_up.sql" ) ) ) {
-        $up =~ /^.*(\d+)_up.sql$/;
+        $up =~ /\D*(\d+)_up.sql$/;
         $newest = $1 if $1 > $newest;
     }
     return $newest;
