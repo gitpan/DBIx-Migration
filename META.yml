@@ -1,6 +1,6 @@
 ---
 name: DBIx-Migration
-version: 0.06
+version: 0.07
 author:
   - 'Sebastian Riedel, C<sri@oook.de>'
 abstract: 'Seamless DB schema up- and downgrades'
@@ -9,6 +9,7 @@ resources:
   license: http://dev.perl.org/licenses/
 requires:
   Class::Accessor::Fast: 0
+  DBD::SQLite: 0
   DBI: 0
   File::Slurp: 0
   File::Spec: 0
@@ -17,7 +18,7 @@ configure_requires:
 provides:
   DBIx::Migration:
     file: lib/DBIx/Migration.pm
-    version: 0.06
+    version: 0.07
 generated_by: Module::Build version 0.340201
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
